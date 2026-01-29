@@ -4,7 +4,8 @@ import openai
 from prompt_builder import build_prompt
 
 # Testmodus aus Environment Variable (optional)
-TEST_MODE = os.getenv("TEST_MODE", "true").lower() == "true"
+TEST_MODE = (os.getenv("TEST_MODE") or "true").lower() == "true"
+
 
 # OpenAI API-Key
 openai.api_key = os.getenv("OPENAI_API_KEY")
