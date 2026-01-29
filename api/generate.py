@@ -3,10 +3,10 @@ import os
 import openai
 from prompt_builder import build_prompt
 
-# Passwort & Testmodus aus Vercel Environment Variables
-PASSWORD = os.getenv("APP_PASSWORD", "test")
+# Testmodus aus Environment Variable (optional)
 TEST_MODE = os.getenv("TEST_MODE", "true").lower() == "true"
 
+# OpenAI API-Key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def handler(request):
@@ -18,13 +18,6 @@ def handler(request):
 
     data = json.loads(request.body)
 
-    # 🔐 Passwort prüfen
-    if data.get("password") != PASSWORD:
-        return {
-            "statusCode": 401,
-            "body": json.dumps({"error": "Falsches Passwort"})
-        }
-
     # 🧪 TESTMODUS (kein API-Key nötig)
     if TEST_MODE:
         return {
@@ -32,10 +25,10 @@ def handler(request):
             "body": json.dumps({
                 "rap": (
                     "🎤 TESTMODUS 🎤\n\n"
-                    "Kein API-Key, doch der Flow ist echt,\n"
-                    "Vercel am Start, das Backend läuft perfekt.\n"
-                    "Passwort korrekt, Anfrage kam rein,\n"
-                    "Test-Rap aktiviert – alles fein."
+                    "Kein API-Key nötig, der Flow läuft,\n"
+                    "Vercel am Start, das Backend ist cool.\n"
+                    "Anfrage kam rein – alles gut,\n"
+                    "Test-Rap aktiviert, voller Mut."
                 )
             })
         }
@@ -48,16 +41,22 @@ def handler(request):
         data.get("beat")
     )
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.9
-    )
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.9
+        )
+
+        rap_text = response.choices[0].message.content
+
+    except Exception as e:
+        return {
+            "statusCode": 500,
+            "body": json.dumps({"error": f"Serverfehler: {str(e)}"})
+        }
 
     return {
         "statusCode": 200,
-        "body": json.dumps({
-            "rap": response.choices[0].message.content
-        })
+        "body": json.dumps({"rap": rap_text})
     }
-
