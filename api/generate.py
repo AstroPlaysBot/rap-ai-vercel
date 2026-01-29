@@ -3,7 +3,7 @@ import os
 import openai
 from prompt_builder import build_prompt
 
-# Testmodus aus Environment Variable (optional)
+# Testmodus
 TEST_MODE = (os.getenv("TEST_MODE") or "true").lower() == "true"
 
 # OpenAI API-Key
@@ -37,7 +37,7 @@ def handler(request):
             })
         }
 
-    # 🚀 NORMALMODUS (OpenAI)
+    # 🚀 NORMALMODUS (OpenAI) – jetzt korrekt innerhalb der Funktion
     prompt = build_prompt(
         data.get("topics"),
         data.get("artist"),
