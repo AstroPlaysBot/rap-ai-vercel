@@ -1,8 +1,6 @@
 async function generateRap() {
-    // Status anzeigen
     document.getElementById("output").innerText = "⏳ Generiere Rap...";
 
-    // Payload ohne Passwort
     const payload = {
         topics: document.getElementById("topics").value,
         artist: document.getElementById("artist").value,
@@ -24,7 +22,6 @@ async function generateRap() {
             return;
         }
 
-        // Rap anzeigen
         document.getElementById("output").innerText = data.rap;
     } catch (err) {
         document.getElementById("output").innerText = "⚠️ Serverfehler";
