@@ -6,7 +6,6 @@ from prompt_builder import build_prompt
 # Testmodus aus Environment Variable (optional)
 TEST_MODE = (os.getenv("TEST_MODE") or "true").lower() == "true"
 
-
 # OpenAI API-Key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -17,7 +16,11 @@ def handler(request):
             "body": json.dumps({"error": "Method not allowed"})
         }
 
-    data = json.loads(request.body)
+    # Sicherstellen, dass request.body ein String ist
+    try:
+        data = json.loads(request.body or "{}")
+    except Exception:
+        data = {}
 
     # 🧪 TESTMODUS (kein API-Key nötig)
     if TEST_MODE:
