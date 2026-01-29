@@ -1,19 +1,13 @@
 async function generateRap() {
-    const password = document.getElementById("password").value;
-
-    if (!password) {
-        alert("Bitte Passwort eingeben!");
-        return;
-    }
-
+    // Status anzeigen
     document.getElementById("output").innerText = "⏳ Generiere Rap...";
 
+    // Payload ohne Passwort
     const payload = {
         topics: document.getElementById("topics").value,
         artist: document.getElementById("artist").value,
         lyrics: document.getElementById("lyrics").value,
-        beat: document.getElementById("beat").value,
-        password: password
+        beat: document.getElementById("beat").value
     };
 
     try {
@@ -30,9 +24,10 @@ async function generateRap() {
             return;
         }
 
+        // Rap anzeigen
         document.getElementById("output").innerText = data.rap;
-    } catch {
+    } catch (err) {
         document.getElementById("output").innerText = "⚠️ Serverfehler";
+        console.error(err);
     }
 }
-
