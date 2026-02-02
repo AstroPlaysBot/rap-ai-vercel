@@ -1,9 +1,11 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family: Arial,sans-serif;
-  background: black; color:white; overflow:hidden;
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); /* Instagram-Gradient */
+  color:white; overflow:hidden;
+  transition: transform 0.1s linear;
 }
-h1 { text-align:center; color:#ff3f3f; text-shadow:0 0 15px #ff3f3f; }
+h1 { text-align:center; color:#fff; text-shadow:0 0 15px #ff3f3f; }
 .subtitle { display:block; font-size:14px; margin-top:5px; }
 #rocket-secret { cursor:pointer; display:inline-block; }
 
@@ -36,5 +38,12 @@ button { width:100%; padding:15px; border-radius:50px; border:none; background:l
 }
 #launchScreen.active { opacity:1; pointer-events:auto; }
 #astroText { font-size:40px; font-weight:bold; margin-bottom:20px; }
-#loaderContainer { width:200px; height:20px; background: rgba(255,255,255,0.2); border-radius:10px; overflow:hidden; }
+#loaderContainer { width:300px; height:20px; background: rgba(255,255,255,0.2); border-radius:10px; overflow:hidden; }
 #loader { width:0; height:100%; background:#ff3f3f; transition: width 0.1s linear; }
+
+/* Planeten */
+.planet {
+  position: absolute; border-radius:50%; width:20px; height:20px;
+  background: linear-gradient(45deg,#6ab7ff,#1e88e5);
+  z-index:5;
+}
