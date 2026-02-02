@@ -8,38 +8,27 @@
 </head>
 <body>
 
-<h1>
-  🎤 Rap Generator
-  <span class="subtitle">
-    <a href="https://astroplaysbot.github.io/dashboard" target="_blank" id="astroLink">von AstroPlays</a>
-  </span>
-</h1>
+<!-- HEADER -->
+<h1>🎤 Rap Generator</h1>
+<a id="astroLink" href="https://astroplaysbot.github.io/dashboard" target="_blank">von AstroPlays</a>
 
-<div class="app">
-  <input id="topics" placeholder="Themen (z.B. Straße, Lambo)">
-  <input id="artist" placeholder="Stil (z.B. Travis Scott)">
-  <textarea id="lyrics" placeholder="Eigene Zeilen"></textarea>
-  <input id="beat" placeholder="Beat / Mood">
-  <button onclick="generateRap()">Rap generieren</button>
-  <pre id="output"></pre>
-</div>
+<!-- LINKES BILD -->
+<img src="roolexx.png" alt="Roolexx" class="top-left-logo">
 
-<!-- INFO CARD -->
-<div class="info-card">
-  <img src="roolexx.png" alt="Roolexx Logo">
-  <div class="name">Roolexx</div>
-  <div class="socials">
-    <a class="social instagram" href="https://instagram.com/" target="_blank"><span>Folgen</span></a>
-    <a class="social youtube" href="https://youtube.com/" target="_blank"><span>Abonnieren</span></a>
-  </div>
-</div>
+<!-- Input-Felder -->
+<input id="topics" placeholder="Themen (z.B. Roolexx)"><br>
+<input id="artist" placeholder="Stil (z.B. Inspirational Rap)"><br>
+<textarea id="lyrics" placeholder="Eigene Zeilen"></textarea><br>
+<input id="beat" placeholder="Beat / Mood"><br><br>
 
-<!-- Container für gleitende Logos -->
-<div id="logo-container">
-  <img src="instagram.png" class="floating-logo instagram-logo" alt="Instagram">
-  <img src="youtube.png" class="floating-logo youtube-logo" alt="YouTube">
-</div>
+<button onclick="generateRap()">Rap generieren</button>
+
+<pre id="output"></pre>
+
+<!-- Container für animierte Logos -->
+<div id="logo-container"></div>
 
 <script src="script.js"></script>
+<script src="/logos.js"></script>
 </body>
 </html>
