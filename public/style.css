@@ -1,14 +1,14 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family: Arial,sans-serif;
-  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); /* Instagram-Gradient */
-  color:white; overflow:hidden;
-  transition: transform 0.1s linear;
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+  color:white; overflow-x:hidden;
 }
 h1 { text-align:center; color:#fff; text-shadow:0 0 15px #ff3f3f; }
 .subtitle { display:block; font-size:14px; margin-top:5px; }
-#rocket-secret { cursor:pointer; display:inline-block; }
+#astroLink { color: #fff; text-decoration:underline; cursor:pointer; }
 
+/* APP */
 .app { max-width:420px; margin:auto; position:relative; z-index:2; }
 input,textarea { width:100%; padding:14px; margin-bottom:12px; border-radius:12px; border:none; background: rgba(255,255,255,0.08); color:white; font-size:16px; }
 textarea { min-height:80px; }
@@ -26,24 +26,3 @@ button { width:100%; padding:15px; border-radius:50px; border:none; background:l
 .social:hover span, .social:active span { opacity:1; }
 .instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af); }
 .youtube { background:#ff0000; }
-
-/* SPACE CANVAS */
-#spaceCanvas { position: fixed; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none; }
-
-/* LAUNCH SCREEN */
-#launchScreen {
-  position: fixed; inset:0; background:rgba(0,0,0,0.95);
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  z-index:9999; opacity:0; transition: opacity 0.5s ease; pointer-events:none;
-}
-#launchScreen.active { opacity:1; pointer-events:auto; }
-#astroText { font-size:40px; font-weight:bold; margin-bottom:20px; }
-#loaderContainer { width:300px; height:20px; background: rgba(255,255,255,0.2); border-radius:10px; overflow:hidden; }
-#loader { width:0; height:100%; background:#ff3f3f; transition: width 0.1s linear; }
-
-/* Planeten */
-.planet {
-  position: absolute; border-radius:50%; width:20px; height:20px;
-  background: linear-gradient(45deg,#6ab7ff,#1e88e5);
-  z-index:5;
-}
