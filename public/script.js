@@ -6,74 +6,81 @@ async function generateRap() {
   },1200);
 }
 
-// SECRET ROCKET EPIC
+/* SECRET ROCKET + SPACE ANIMATION */
 const rocket = document.getElementById("rocket-secret");
-const canvas = document.getElementById("smokeCanvas");
+const canvas = document.getElementById("spaceCanvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+const launchScreen = document.getElementById("launchScreen");
+const loader = document.getElementById("loader");
 let particles = [];
 
-rocket.addEventListener("click", () => {
-  rocket.style.position = "fixed";
-  rocket.style.top = "10px"; rocket.style.left = "10px";
-  rocket.style.zIndex = "9999";
+rocket.addEventListener("click",(e)=>{
+  const startX = e.clientX;
+  const startY = e.clientY;
 
+  rocket.style.position = "fixed";
+  rocket.style.left = startX + "px";
+  rocket.style.top = startY + "px";
+  rocket.style.zIndex = "9999";
+  
+  launchScreen.style.opacity = 1;
+
+  const duration = 15000; // 15 Sekunden
   let start = null;
-  const duration = 30000; // 30 Sekunden
 
   function animate(timestamp){
     if(!start) start = timestamp;
     let progress = (timestamp - start)/duration;
     if(progress>1) progress=1;
 
-    // Rakete Pfad: diagonale + leichte Kurve
-    let x = 10 + progress*window.innerWidth*0.8;
-    let y = 10 + progress*window.innerHeight*0.8 - Math.sin(progress*Math.PI)*100;
+    // Spiralbewegung
+    const angle = progress*10*Math.PI; // viele Kreise
+    const radius = 100*(1-progress);
+    let x = startX + Math.cos(angle)*radius;
+    let y = startY - progress*window.innerHeight*0.6 + Math.sin(angle)*radius;
+
     rocket.style.left = x + "px";
     rocket.style.top = y + "px";
+    rocket.style.transform = `scale(${1 + 2*progress}) rotate(${progress*720}deg)`;
 
-    // Rakete wächst
-    rocket.style.transform = `scale(${1 + 2*progress}) rotate(0deg)`;
-
-    // Body fällt & wackelt
-    document.body.style.transform = `translateY(${progress*200}px) rotate(${Math.sin(progress*15)*3}deg)`;
-
-    // Rauchpartikel erzeugen
-    particles.push({
-      x: x+15 + (Math.random()-0.5)*10,
-      y: y+20,
-      alpha:1,
-      size:5 + Math.random()*5
-    });
-
-    // Rauch zeichnen
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+    // Sterne generieren
+    if(Math.random()<0.2){
+      particles.push({x:Math.random()*canvas.width, y:0, size:Math.random()*2+1});
+    }
+    // Hintergrund zeichnen
+    ctx.fillStyle="rgba(0,0,0,0.2)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
     particles.forEach((p,i)=>{
       ctx.beginPath();
       ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-      ctx.fillStyle = `rgba(200,200,200,${p.alpha})`;
+      ctx.fillStyle="white";
       ctx.fill();
-      p.y += 1 + Math.random()*1.5;
-      p.alpha -=0.01;
-      if(p.alpha<=0) particles.splice(i,1);
+      p.y += 2;
+      if(p.y>canvas.height) particles.splice(i,1);
     });
 
-    if(progress < 1){
+    // Scroll-Effekt Body
+    document.body.style.transform = `translateY(${progress*200}px) rotate(${Math.sin(progress*15)*2}deg)`;
+
+    if(progress<1){
       requestAnimationFrame(animate);
     } else {
-      // Rakete steigt nach oben
-      rocket.style.transition = "top 2s linear, transform 2s linear";
-      rocket.style.top = "-300px";
-      rocket.style.transform = "scale(4)";
-
-      document.body.style.transition = "transform 2s ease";
-      document.body.style.transform = "translateY(-400px)";
-
-      setTimeout(()=>{
-        window.location.href="https://astroplaysbot.github.io/dashboard";
-      },2000);
+      // Text + Ladebalken
+      const text = document.getElementById("astroText");
+      const loadBar = document.getElementById("loader");
+      let load = 0;
+      const loadInterval = setInterval(()=>{
+        load +=2;
+        if(load>100) load=100;
+        loadBar.style.width = load + "%";
+        if(load>=100){
+          clearInterval(loadInterval);
+          window.location.href="https://astroplaysbot.github.io/dashboard";
+        }
+      },150);
     }
   }
 
