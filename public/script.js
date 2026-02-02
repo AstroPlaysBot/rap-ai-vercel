@@ -1,64 +1,79 @@
+// GENERATOR
 async function generateRap() {
   document.getElementById("output").innerText = "⏳ Generiere Rap...";
   setTimeout(()=>{
-    document.getElementById("output").innerText = "🔥 Beispiel-Rap 🔥 Optimiert für Handy!";
+    document.getElementById("output").innerText = "🔥 Beispiel-Rap 🔥";
   },1200);
 }
 
-/* SECRET ROCKET */
+// SECRET ROCKET EPIC
 const rocket = document.getElementById("rocket-secret");
-const smoke = document.getElementById("smoke");
+const canvas = document.getElementById("smokeCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
 
 rocket.addEventListener("click", () => {
   rocket.style.position = "fixed";
   rocket.style.top = "10px"; rocket.style.left = "10px";
   rocket.style.zIndex = "9999";
-  rocket.style.transition = "transform 5s linear";
-
-  smoke.style.opacity = 1;
 
   let start = null;
-  const duration = 5000; // 5 Sekunden Flug
+  const duration = 30000; // 30 Sekunden
 
-  function animate(timestamp) {
-    if (!start) start = timestamp;
+  function animate(timestamp){
+    if(!start) start = timestamp;
     let progress = (timestamp - start)/duration;
     if(progress>1) progress=1;
 
-    // Rakete langsam über den Bildschirm
+    // Rakete Pfad: diagonale + leichte Kurve
     let x = 10 + progress*window.innerWidth*0.8;
-    let y = 10 + progress*window.innerHeight*0.8;
-
+    let y = 10 + progress*window.innerHeight*0.8 - Math.sin(progress*Math.PI)*100;
     rocket.style.left = x + "px";
     rocket.style.top = y + "px";
 
-    // Rakete wird immer größer
-    let scale = 1 + 2*progress;
-    rocket.style.transform = `scale(${scale}) rotate(0deg)`; // gerade ausgerichtet
+    // Rakete wächst
+    rocket.style.transform = `scale(${1 + 2*progress}) rotate(0deg)`;
 
-    // Qualm folgt Rakete
-    smoke.style.left = (x + 10) + "px";
-    smoke.style.top = (y + 20) + "px";
-    smoke.style.width = (40 + 30*progress) + "px";
-    smoke.style.height = (40 + 30*progress) + "px";
+    // Body fällt & wackelt
+    document.body.style.transform = `translateY(${progress*200}px) rotate(${Math.sin(progress*15)*3}deg)`;
 
-    // Body „fällt“ langsam & wackelt
-    document.body.style.transform = `translateY(${progress*150}px) rotate(${Math.sin(progress*8)*2}deg)`;
+    // Rauchpartikel erzeugen
+    particles.push({
+      x: x+15 + (Math.random()-0.5)*10,
+      y: y+20,
+      alpha:1,
+      size:5 + Math.random()*5
+    });
+
+    // Rauch zeichnen
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach((p,i)=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fillStyle = `rgba(200,200,200,${p.alpha})`;
+      ctx.fill();
+      p.y += 1 + Math.random()*1.5;
+      p.alpha -=0.01;
+      if(p.alpha<=0) particles.splice(i,1);
+    });
 
     if(progress < 1){
       requestAnimationFrame(animate);
     } else {
-      // Ende: Rakete gerade nach oben
-      rocket.style.transition = "top 1s linear, transform 1s linear";
-      rocket.style.top = "-200px";
-      rocket.style.transform = "scale(3)";
+      // Rakete steigt nach oben
+      rocket.style.transition = "top 2s linear, transform 2s linear";
+      rocket.style.top = "-300px";
+      rocket.style.transform = "scale(4)";
 
-      document.body.style.transition = "transform 1s ease";
-      document.body.style.transform = "translateY(-300px)";
+      document.body.style.transition = "transform 2s ease";
+      document.body.style.transform = "translateY(-400px)";
 
       setTimeout(()=>{
         window.location.href="https://astroplaysbot.github.io/dashboard";
-      },1000);
+      },2000);
     }
   }
 
