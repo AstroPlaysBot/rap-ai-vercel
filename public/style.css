@@ -1,8 +1,8 @@
-* { box-sizing:border-box; margin:0; padding:0; }
+* { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family: Arial,sans-serif;
   background: linear-gradient(120deg,#0f0c29,#302b63,#24243e);
-  color:white; min-height:100vh; padding:20px; overflow-x:hidden;
+  color:white; min-height:100vh; overflow:hidden;
   transition: transform 1s ease;
 }
 
@@ -10,7 +10,7 @@ h1 { text-align:center; color:#ff3f3f; text-shadow:0 0 15px #ff3f3f; }
 .subtitle { display:block; font-size:14px; margin-top:5px; }
 #rocket-secret { cursor:pointer; display:inline-block; }
 
-.app { max-width:420px; margin:auto; }
+.app { max-width:420px; margin:auto; position:relative; z-index:2; }
 input,textarea {
   width:100%; padding:14px; margin-bottom:12px;
   border-radius:12px; border:none; background: rgba(255,255,255,0.08);
@@ -22,7 +22,7 @@ button {
   background:linear-gradient(45deg,#ff3f3f,#ff9a3f); color:white;
   font-weight:bold; font-size:18px;
 }
-#output { margin-top:15px; background: rgba(0,0,0,0.4); padding:15px; border-radius:15px; }
+#output { margin-top:15px; background: rgba(0,0,0,0.4); padding:15px; border-radius:15px; z-index:2; position:relative; }
 
 /* INFO CARD */
 .info-card {
@@ -43,13 +43,11 @@ button {
 .instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af); }
 .youtube { background:#ff0000; }
 
-/* QUALM */
-#smoke {
+/* CANVAS */
+#smokeCanvas {
   position: fixed;
-  width: 40px; height: 40px;
-  top:50px; left:50px;
-  background: radial-gradient(rgba(200,200,200,0.5), transparent);
-  border-radius:50%;
-  z-index:998; pointer-events:none;
-  opacity:0;
+  top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  z-index:1;
 }
