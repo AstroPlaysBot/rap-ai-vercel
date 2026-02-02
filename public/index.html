@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epic Rocket Animation</title>
+<title>AstroPlays Launch</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
   <pre id="output"></pre>
 </div>
 
-<!-- FIXED INFO BOX -->
+<!-- INFO CARD -->
 <div class="info-card">
   <img src="roolexx.png" alt="Roolexx Logo">
   <div class="name">Roolexx</div>
@@ -32,8 +32,16 @@
   </div>
 </div>
 
-<!-- QUALM -->
-<canvas id="smokeCanvas"></canvas>
+<!-- CANVAS für Sterne/Planeten -->
+<canvas id="spaceCanvas"></canvas>
+
+<!-- Startbildschirm Overlay -->
+<div id="launchScreen">
+  <div id="astroText">AstroPlays</div>
+  <div id="loaderContainer">
+    <div id="loader"></div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
