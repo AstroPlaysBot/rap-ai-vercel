@@ -6,7 +6,7 @@ async function generateRap() {
   },1200);
 }
 
-/* SECRET ROCKET + SPACE ANIMATION */
+// SECRET ROCKET + SPACE
 const rocket = document.getElementById("rocket-secret");
 const canvas = document.getElementById("spaceCanvas");
 const ctx = canvas.getContext("2d");
@@ -25,10 +25,11 @@ rocket.addEventListener("click",(e)=>{
   rocket.style.left = startX + "px";
   rocket.style.top = startY + "px";
   rocket.style.zIndex = "9999";
-  
-  launchScreen.style.opacity = 1;
 
-  const duration = 15000; // 15 Sekunden
+  // Launch-Screen aktivieren
+  launchScreen.classList.add("active");
+
+  const duration = 15000;
   let start = null;
 
   function animate(timestamp){
@@ -37,7 +38,7 @@ rocket.addEventListener("click",(e)=>{
     if(progress>1) progress=1;
 
     // Spiralbewegung
-    const angle = progress*10*Math.PI; // viele Kreise
+    const angle = progress*10*Math.PI;
     const radius = 100*(1-progress);
     let x = startX + Math.cos(angle)*radius;
     let y = startY - progress*window.innerHeight*0.6 + Math.sin(angle)*radius;
@@ -46,11 +47,8 @@ rocket.addEventListener("click",(e)=>{
     rocket.style.top = y + "px";
     rocket.style.transform = `scale(${1 + 2*progress}) rotate(${progress*720}deg)`;
 
-    // Sterne generieren
-    if(Math.random()<0.2){
-      particles.push({x:Math.random()*canvas.width, y:0, size:Math.random()*2+1});
-    }
-    // Hintergrund zeichnen
+    // Sterne
+    if(Math.random()<0.2) particles.push({x:Math.random()*canvas.width, y:0, size:Math.random()*2+1});
     ctx.fillStyle="rgba(0,0,0,0.2)";
     ctx.fillRect(0,0,canvas.width,canvas.height);
     particles.forEach((p,i)=>{
@@ -62,20 +60,17 @@ rocket.addEventListener("click",(e)=>{
       if(p.y>canvas.height) particles.splice(i,1);
     });
 
-    // Scroll-Effekt Body
+    // Scroll Body
     document.body.style.transform = `translateY(${progress*200}px) rotate(${Math.sin(progress*15)*2}deg)`;
 
-    if(progress<1){
-      requestAnimationFrame(animate);
-    } else {
-      // Text + Ladebalken
-      const text = document.getElementById("astroText");
-      const loadBar = document.getElementById("loader");
+    if(progress<1) requestAnimationFrame(animate);
+    else {
+      // Ladebalken
       let load = 0;
       const loadInterval = setInterval(()=>{
-        load +=2;
+        load+=2;
         if(load>100) load=100;
-        loadBar.style.width = load + "%";
+        loader.style.width = load + "%";
         if(load>=100){
           clearInterval(loadInterval);
           window.location.href="https://astroplaysbot.github.io/dashboard";
