@@ -1,10 +1,9 @@
 async function generateRap() {
     document.getElementById("output").innerText = "⏳ Generiere Rap...";
 
-    // hier dein API Call – Platzhalter
     setTimeout(() => {
         document.getElementById("output").innerText =
-            "🔥 Beispiel-Rap 🔥\nAlles läuft auch auf Handy!";
+            "🔥 Beispiel-Rap 🔥\nOptimiert für Handy & Desktop!";
     }, 1200);
 }
 
@@ -24,7 +23,8 @@ rocket.addEventListener("click", () => {
 
         rocket.style.left = x + "px";
         rocket.style.top = y + "px";
-        rocket.style.transform = `rotate(${Math.random()*360}deg) scale(1.4)`;
+        rocket.style.transform =
+            `rotate(${Math.random() * 360}deg) scale(1.4)`;
     }, 100);
 
     setTimeout(() => {
