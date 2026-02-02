@@ -2,31 +2,46 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rap Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>🎤 Rap Generator</h1>
+<h1>
+    🎤 Rap Generator
+    <span class="subtitle">
+        von AstroPlays <span id="rocket-secret">🚀</span>
+    </span>
+</h1>
 
-<!-- Input-Felder -->
-<input id="topics" placeholder="Themen (z.B. Straße, Lambo, Waffe)"><br>
-<input id="artist" placeholder="Stil (z.B. Bushido, Travis Scott)"><br>
-<textarea id="lyrics" placeholder="Eigene Zeilen"></textarea><br>
-<input id="beat" placeholder="Beat / Mood"><br><br>
+<div class="app">
+    <input id="topics" placeholder="Themen (z.B. Straße, Lambo)">
+    <input id="artist" placeholder="Stil (z.B. Travis Scott)">
+    <textarea id="lyrics" placeholder="Eigene Zeilen"></textarea>
+    <input id="beat" placeholder="Beat / Mood">
 
-<button onclick="generateRap()">Rap generieren</button>
+    <button onclick="generateRap()">Rap generieren</button>
+    <pre id="output"></pre>
 
-<pre id="output"></pre>
+    <!-- INFO BOX -->
+    <div class="info-card">
+        <img src="flexcity.png" alt="FlexCity">
 
-<!-- Container für animierte Logos -->
-<div id="logo-container"></div>
+        <p><b>Kontakt</b><br>flexcity.server@gmail.com</p>
+        <p><b>Support</b><br>Mo–Fr 12–20<br>Sa–So 10–23</p>
 
-<!-- JS: Rap-Generator -->
+        <div class="socials">
+            <a class="social instagram" href="https://instagram.com/" target="_blank">
+                <span>Folgen</span>
+            </a>
+            <a class="social youtube" href="https://youtube.com/" target="_blank">
+                <span>Abonnieren</span>
+            </a>
+        </div>
+    </div>
+</div>
+
 <script src="script.js"></script>
-
-<!-- JS: fliegende Instagram/YouTube-Logos -->
-<script src="/logos.js"></script>
-
 </body>
 </html>
