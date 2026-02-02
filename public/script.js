@@ -25,7 +25,6 @@ Legendenstatus, keiner kommt ihm gleich,
 Sein Sound fresh, sein Game stark und reich.
 Alle Augen auf ihn, wenn er die Bühne betritt,
 Roolexx, der Boss, der die Szene richtig fit macht.
-
-`; 
+`;
   }, 1000);
 }
