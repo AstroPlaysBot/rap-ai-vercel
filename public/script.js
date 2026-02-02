@@ -1,15 +1,9 @@
-// RAP GENERATOR
 async function generateRap() {
-  const topics = document.getElementById("topics").value || "Roolexx";
-  const artist = document.getElementById("artist").value || "Inspirational Rap";
-  const lyrics = document.getElementById("lyrics").value || "";
+    const output = document.getElementById("output");
+    output.innerText = "⏳ Generiere Rap...";
 
-  const output = document.getElementById("output");
-  output.innerText = "⏳ Generiere Rap...";
-
-  // Test-Rap nur über Roolexx
-  setTimeout(()=>{
-    output.innerText = `🔥 Roolexx-Rap 🔥
+    setTimeout(()=>{
+        output.innerText = `🔥 Roolexx-Rap 🔥
 
 Yo, hier kommt Roolexx, Mann, der niemals chillt,
 Jede Line on Fire, sein Flow, der alles killt.
@@ -26,5 +20,5 @@ Sein Sound fresh, sein Game stark und reich.
 Alle Augen auf ihn, wenn er die Bühne betritt,
 Roolexx, der Boss, der die Szene richtig fit macht.
 `;
-  }, 1000);
+    }, 1000);
 }
