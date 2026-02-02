@@ -1,49 +1,28 @@
 async function generateRap() {
-    document.getElementById("output").innerText = "⏳ Generiere Rap...";
-
-    setTimeout(() => {
-        document.getElementById("output").innerText =
-            "🔥 Beispiel-Rap 🔥\nOptimiert für Handy & Desktop!";
-    }, 1200);
+  document.getElementById("output").innerText = "⏳ Generiere Rap...";
+  setTimeout(()=>{
+    document.getElementById("output").innerText = "🔥 Beispiel-Rap 🔥 Optimiert für Handy!";
+  },1200);
 }
 
 /* SECRET ROCKET */
 const rocket = document.getElementById("rocket-secret");
+rocket.addEventListener("click",()=>{
+  rocket.style.position="fixed";
+  rocket.style.top="10px"; rocket.style.left="10px";
+  rocket.style.zIndex="9999";
+  rocket.style.transition="transform 3s ease-in-out";
 
-rocket.addEventListener("click", () => {
-    rocket.style.position = "fixed";
-    rocket.style.zIndex = "9999";
+  // Start Animation Ecke zu Ecke + Kreise mittig
+  rocket.style.animation="rocketFall 3s forwards";
 
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
+  setTimeout(()=>{
+    // "Runterfallen" Effekt
+    document.body.style.transition="transform 1s ease-in";
+    document.body.style.transform="translateY(100vh)";
 
-    const fly = setInterval(() => {
-        x += (Math.random() - 0.5) * 180;
-        y += (Math.random() - 0.5) * 180;
-
-        rocket.style.left = x + "px";
-        rocket.style.top = y + "px";
-        rocket.style.transform =
-            `rotate(${Math.random() * 360}deg) scale(1.4)`;
-    }, 100);
-
-    setTimeout(() => {
-        clearInterval(fly);
-        explode();
-    }, 3000);
+    setTimeout(()=>{
+      window.location.href="https://astroplaysbot.github.io/dashboard";
+    },1000);
+  },3000);
 });
-
-function explode() {
-    const flash = document.createElement("div");
-    flash.style.position = "fixed";
-    flash.style.inset = 0;
-    flash.style.animation = "flash 0.15s infinite";
-    flash.style.zIndex = 9998;
-
-    document.body.appendChild(flash);
-    document.body.style.animation = "shake 0.1s infinite";
-
-    setTimeout(() => {
-        window.location.href = "https://deine-website.de";
-    }, 2500);
-}
