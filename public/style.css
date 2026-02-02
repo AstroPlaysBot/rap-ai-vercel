@@ -1,170 +1,76 @@
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; margin:0; padding:0; }
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
-    color: white;
-    min-height: 100vh;
-    padding: 20px;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(120deg,#0f0c29,#302b63,#24243e);
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 h1 {
-    text-align: center;
-    color: #ff3f3f;
-    text-shadow: 0 0 15px #ff3f3f;
+  text-align:center;
+  color:#ff3f3f;
+  text-shadow:0 0 15px #ff3f3f;
 }
 
-.subtitle {
-    display: block;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-#rocket-secret {
-    cursor: pointer;
-}
+.subtitle { display:block; font-size:14px; margin-top:5px; }
+#rocket-secret { cursor:pointer; display:inline-block; }
 
 /* APP */
-.app {
-    max-width: 420px;
-    margin: auto;
-}
-
-/* INPUTS */
+.app { max-width:420px; margin:auto; }
 input, textarea {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 12px;
-    border-radius: 12px;
-    border: none;
-    background: rgba(255,255,255,0.08);
-    color: white;
-    font-size: 16px;
+  width:100%; padding:14px; margin-bottom:12px;
+  border-radius:12px; border:none;
+  background: rgba(255,255,255,0.08); color:white; font-size:16px;
 }
-
-textarea {
-    min-height: 80px;
-}
-
-/* BUTTON */
+textarea { min-height:80px; }
 button {
-    width: 100%;
-    padding: 15px;
-    border-radius: 50px;
-    border: none;
-    background: linear-gradient(45deg, #ff3f3f, #ff9a3f);
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
+  width:100%; padding:15px; border-radius:50px;
+  border:none; background:linear-gradient(45deg,#ff3f3f,#ff9a3f);
+  color:white; font-weight:bold; font-size:18px;
 }
-
-/* OUTPUT */
 #output {
-    margin-top: 15px;
-    background: rgba(0,0,0,0.4);
-    padding: 15px;
-    border-radius: 15px;
+  margin-top:15px;
+  background: rgba(0,0,0,0.4);
+  padding:15px; border-radius:15px;
 }
 
-/* INFO CARD */
+/* INFO CARD FIXED */
 .info-card {
-    margin-top: 25px;
-    background: rgba(0,0,0,0.45);
-    padding: 18px;
-    border-radius: 20px;
+  position: fixed; top:10px; left:10px;
+  width:80px; background: rgba(0,0,0,0.5);
+  padding:10px; border-radius:15px;
+  text-align:center;
+  z-index:100;
 }
-
-/* HEADER MIT LOGO LINKS */
-.info-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
+.info-card img {
+  width:60px; height:60px; border-radius:50%; object-fit:cover;
+  margin-bottom:5px;
 }
-
-.info-header img {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255,255,255,0.2);
-}
-
-.info-header h3 {
-    margin: 0;
-    font-size: 18px;
-}
-
-.info-header span {
-    font-size: 12px;
-    opacity: 0.7;
-}
-
-.info-content p {
-    margin: 8px 0;
-    font-size: 14px;
-}
+.name { font-size:12px; margin-bottom:5px; }
 
 /* SOCIALS */
-.socials {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
+.socials { display:flex; flex-direction:column; gap:5px; }
 .social {
-    height: 48px;
-    width: 48px;
-    border-radius: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: width 0.4s ease;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+  height:30px; width:30px; border-radius:30px;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; transition: width 0.4s ease;
+  color:white; text-decoration:none; font-weight:bold;
+  margin:auto;
 }
+.social span { opacity:0; white-space:nowrap; margin-left:5px; transition:opacity 0.3s ease; }
+.social:hover, .social:active { width:100px; }
+.social:hover span, .social:active span { opacity:1; }
 
-.social span {
-    opacity: 0;
-    white-space: nowrap;
-    margin-left: 10px;
-    transition: opacity 0.3s ease;
-}
+.instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af); }
+.youtube { background:#ff0000; }
 
-.social:hover,
-.social:active {
-    width: 140px;
-}
-
-.social:hover span,
-.social:active span {
-    opacity: 1;
-}
-
-.instagram {
-    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
-}
-
-.youtube {
-    background: #ff0000;
-}
-
-/* EXPLOSION */
-@keyframes flash {
-    0% { background: red; }
-    50% { background: yellow; }
-    100% { background: red; }
-}
-
-@keyframes shake {
-    0% { transform: translate(0); }
-    25% { transform: translate(6px,-6px); }
-    50% { transform: translate(-6px,6px); }
-    75% { transform: translate(6px,6px); }
-    100% { transform: translate(0); }
+/* ROCKET ANIMATION */
+@keyframes rocketFall {
+  0% { transform: translate(0,0) rotate(0deg); }
+  25% { transform: translate(90vw,10vh) rotate(90deg); }
+  50% { transform: translate(80vw,80vh) rotate(180deg); }
+  75% { transform: translate(50vw,50vh) rotate(270deg); }
+  100% { transform: translate(50vw,50vh) rotate(360deg); }
 }
