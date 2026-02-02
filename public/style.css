@@ -1,9 +1,20 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family: Arial,sans-serif;
-  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+  min-height:100vh;
   color:white; overflow-x:hidden;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
 }
+
+/* Farbverlauf-Animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 h1 { text-align:center; color:#fff; text-shadow:0 0 15px #ff3f3f; }
 .subtitle { display:block; font-size:14px; margin-top:5px; }
 #astroLink { color: #fff; text-decoration:underline; cursor:pointer; }
@@ -26,3 +37,14 @@ button { width:100%; padding:15px; border-radius:50px; border:none; background:l
 .social:hover span, .social:active span { opacity:1; }
 .instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af); }
 .youtube { background:#ff0000; }
+
+/* FLOATING LOGOS */
+#logo-container { position: fixed; inset:0; z-index:1; pointer-events:none; }
+.floating-logo { position:absolute; width:40px; opacity:0.7; }
+.instagram-logo { left:20%; top:-50px; animation: floatDown 10s linear infinite; }
+.youtube-logo { left:70%; top:-50px; animation: floatDown 12s linear infinite; }
+
+@keyframes floatDown {
+  0% { transform: translateY(-50px); }
+  100% { transform: translateY(110vh); }
+}
