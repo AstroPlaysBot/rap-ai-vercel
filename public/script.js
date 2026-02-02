@@ -5,14 +5,20 @@ async function generateRap() {
     setTimeout(()=>{
         output.innerText = `🔥 Roolexx-Rap 🔥
 
-Yo, Roolexx frisch Papa, alles glänzt neu,
-Mit Baby in den Armen, Flow so fly.
-Kein Schlaf, nur Beats, sein Herz voll Love,
-Die Zukunft bright, Erfolg wie von oben.
+Yo, hier kommt Roolexx, Mann, der niemals chillt,
+Jede Line on Fire, sein Flow, der alles killt.
+Auf den Straßen, in den Beats, sein Name ist bekannt,
+Respekt auf jedem Mic, in jedem Land.
 
-Von morgens bis abends, sein Style tight,
-Seine Lines inspirieren, jeder Vibe bright.
-Legendenstatus, Vater und Rapper vereint,
-Roolexx rockt die Szene, jeder ihn meint.`;
+Von morgens bis abends, Roolexx macht den Vibe,
+Jeder hört zu, wenn er die Crowd beschreibt.
+Keine Pause, immer Action, sein Style tight,
+Roolexx bringt die Hits, yeah, er bleibt immer bright.
+
+Legendenstatus, keiner kommt ihm gleich,
+Sein Sound fresh, sein Game stark und reich.
+Alle Augen auf ihn, wenn er die Bühne betritt,
+Roolexx, der Boss, der die Szene richtig fit macht.
+`;
     }, 1000);
 }
