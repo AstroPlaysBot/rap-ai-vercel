@@ -73,20 +73,44 @@ button {
 .info-card {
     margin-top: 25px;
     background: rgba(0,0,0,0.45);
-    padding: 20px;
+    padding: 18px;
     border-radius: 20px;
-    text-align: center;
 }
 
-.info-card img {
-    width: 120px;
-    margin-bottom: 10px;
+/* HEADER MIT LOGO LINKS */
+.info-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.info-header img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.2);
+}
+
+.info-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.info-header span {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.info-content p {
+    margin: 8px 0;
+    font-size: 14px;
 }
 
 /* SOCIALS */
 .socials {
     display: flex;
-    justify-content: center;
     gap: 10px;
     margin-top: 15px;
 }
