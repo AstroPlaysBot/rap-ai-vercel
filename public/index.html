@@ -3,57 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎤 Rap Generator</title>
+<title>🎤 Rap Generator 3D</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- INTRO SCREEN -->
-<div id="intro">
-
-<div class="intro-content">
-
-<img src="roolexx.png" class="intro-logo">
-
-<h1 class="intro-title">RAP GENERATOR</h1>
-
-<p class="intro-sub">powered by AstroPlays</p>
-
-<div class="beat"></div>
-
-</div>
-
-</div>
-
+<!-- 3D Canvas -->
+<canvas id="scene"></canvas>
 
 <!-- MAIN APP -->
 <div id="app">
-
 <h1>🎤 Rap Generator</h1>
 <a id="astroLink" href="https://astroplaysbot.github.io/dashboard" target="_blank">von AstroPlays</a>
-
-<img src="roolexx.png" class="top-left-logo">
-
 <div class="card">
-
 <input id="topics" placeholder="Themen (z.B. Roolexx)">
 <input id="artist" placeholder="Stil (z.B. Inspirational Rap)">
 <textarea id="lyrics" placeholder="Eigene Zeilen"></textarea>
-<input id="beat" placeholder="Beat / Mood">
-
+<input id="beatInput" placeholder="Beat / Mood">
 <button onclick="generateRap()">Rap generieren</button>
-
 </div>
-
 <pre id="output"></pre>
-
 </div>
 
-<div id="logo-container"></div>
-
+<script src="three.min.js"></script>
 <script src="script.js"></script>
 <script src="logos.js"></script>
-
 </body>
 </html>
